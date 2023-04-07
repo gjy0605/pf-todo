@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdAddCircle } from "react-icons/md";
-import { ImPencil2 } from "react-icons/im"
-import { TbTrashX } from "react-icons/tb"
 import styled from "styled-components";
-// import "./css/TodoInsert.css"
 
 const StyledTodoInsert = styled.div`
 .background {
@@ -33,7 +30,6 @@ form {
   width: 500px;
   height: 300px;
   padding: 10px;
-  overflow: auto;
   border-radius: 5px;
   background-color: #ffffff;
   h2{
@@ -49,7 +45,7 @@ form {
     border-radius: 4px;
     line-height: 1.5em;
     width: 100%;
-    height: 60%;
+    height: 194px;
     word-wrap: break-word;
     overflow-wrap: break-word; 
     resize: none;
@@ -57,31 +53,63 @@ form {
       color:#bbb
     }
   };
+  .todoInsertButton{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top:6px;
+    span{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s ease;
+      :hover{
+        color: #238C6E;
+      }
+    }
+  }
   button {
-    position: fixed;
+    /* position: fixed;
     bottom: 10px;
-    right: 10px;
+    right: 10px; */
     padding: 0;
     background: none;
     outline: none;
     border: none;
-    color: pink;
-    font-size: 2rem;
+    color: #333333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1.3rem;
     display: flex;
     align-items: center;
-    cursor: pointer;
-    transition: 0.1s ease;
+    justify-content: center;
+
   };
-  .rewrite{
-    color: pink;
-    font-size: 1.5rem;
+  .edit{
+    color: #333333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display:flex;
+    justify-content: center;
     cursor: pointer;
+    >span{
+      width: 50%;
+      display:flex;
+      justify-content: center;
+      :hover{
+        color: #238C6E;
+      }
+      :nth-child(2){
+        border-left:1px solid #ccc;
+      }
+    }
   }
 }
 
 `
 
-const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUpdate }) => {
+const TodoInsert = ({ todos, onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUpdate }) => {
   const [value, setValue] = useState("");
 
   const onChange = e => {
@@ -102,7 +130,6 @@ const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUp
   return (
     <StyledTodoInsert>
       <div className="background" onClick={onInsertToggle}></div>
-
       <form onSubmit={selectedTodo ? () => { onUpdate(selectedTodo.id, value) } : onSubmit}>
         <h2>📝 오늘 할 일을 작성해주세요!</h2>
         <textarea
@@ -110,16 +137,18 @@ const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUp
           onChange={onChange}
           placeholder="이곳에 내용을 입력해주세요!"
         />
-        {selectedTodo ? (
-          <div className="rewrite">
-            <TbTrashX onClick={() => onRemove(selectedTodo.id)} />
-            <ImPencil2 onClick={() => onUpdate(selectedTodo.id, value)} />
-          </div>
-        ) : (
-          <button type="submit" >
-            <p>추가하기</p><MdAddCircle />
-          </button>
-        )}
+        <div className="todoInsertButton">
+          {selectedTodo ? (
+            <div className="edit">
+              <span onClick={() => onUpdate(selectedTodo.id, value)} >수정</span>
+              <span onClick={() => onRemove(selectedTodo.id)} >삭제</span>
+            </div>
+          ) : (
+            <button type="submit" >
+              <span>작성하기<MdAddCircle /></span>
+            </button>
+          )}
+        </div>
       </form>
     </StyledTodoInsert >
   );

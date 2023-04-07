@@ -3,6 +3,7 @@ import TodoItem from "./TodoItem";
 // import "./css/TodoList.css";
 import styled from 'styled-components';
 
+
 const StyledTodoList = styled.div`
   width: 90%;
   margin-left: auto;
@@ -11,7 +12,7 @@ const StyledTodoList = styled.div`
 `;
 
 
-const TodoList = ({ todos, onCheckToggle, onInsertToggle, onChangeSelectedTodo }) => {
+const TodoList = ({ todos, onCheckToggle, onInsertToggle, onChangeSelectedTodo, onRemove, onUpdate }) => {
   return (
     <StyledTodoList>
       {todos.map(todo => (
@@ -21,6 +22,8 @@ const TodoList = ({ todos, onCheckToggle, onInsertToggle, onChangeSelectedTodo }
           onCheckToggle={onCheckToggle}
           onInsertToggle={onInsertToggle}
           onChangeSelectedTodo={onChangeSelectedTodo}
+          onRemove={onRemove}
+          onUpdate={onUpdate}
         />
       ))}
     </StyledTodoList>

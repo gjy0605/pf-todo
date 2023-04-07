@@ -7,7 +7,7 @@ const TodoCalendar = () => {
   const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', timeZone: 'Asia/Seoul' };
   const formatter = new Intl.DateTimeFormat('ko-KR', options);
   return (
-    <div className='app'>
+    <div className='calendarWrap'>
       <Calendar onChange={onChange} value={value} />
       <p className='text-center'>
         <span className='bold'>선택한 날짜 : </span>{' '}

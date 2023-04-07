@@ -1,5 +1,4 @@
 import React from "react";
-// import "./css/Template.css"
 import styled from 'styled-components';
 import TodoHead from "./TodoHead";
 
@@ -18,18 +17,13 @@ const StyledTemplate = styled.div`
 
 `
 
-const Template = ({ children, todoLength }) => {
+const Template = ({ children, todoLength, uncheckedTodos }) => {
     return (
         <StyledTemplate>
-            <TodoHead todoLength={todoLength} />
+            <TodoHead todoLength={todoLength} uncheckedTodos={uncheckedTodos} />
             <div className="todoChildren">{children}</div>
         </StyledTemplate>
     )
 }
-
-
-
-
-
 
 export default Template;

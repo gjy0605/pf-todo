@@ -4,72 +4,9 @@
   padding: 0;
   text-decoration: none;
 }
-
 .App{
   width: 100vw;
   height: 100vh;
-}
-
-.table-of-contents {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
-  /* align-items: center; */
-}
-
-.content {
-  margin:  auto;
-}
-.tabBg{
-  background-color: #333;
-  height: 100vh;
-  width: 60px;
-}
-.tab-menu {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* justify-content: space-around; */
-}
-
-.tab-menu .tab{
-  margin-top: 120px;
-  transform: rotate(-90deg);
-  width: 180px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 1.2rem;
-
-  transition: 0.5s ease;
-  border-radius: 10px 10px 0 0;
-}
-.tab-menu .tab:nth-child(1){
-  margin-top: 60px;
- background-color: #F2B3D6;
-}
-.tab-menu .tab:nth-child(2){
-  background-color: #B7AEF2;
-
-}
-.tab-menu .tab:nth-child(3){
-  background-color: #2BD999;
-
-}
-.tab-menu .tab:hover {
-  background-color: #F2EEEB;
-  color:#333;
-  cursor: pointer;
-
-}
-
-.tab-menu .tab.active {
-  background-color: #ffffff;
-  color: #333;
-  font-weight: bold;
 }
