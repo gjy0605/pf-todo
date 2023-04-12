@@ -1,49 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Template from './Template';
 import TodoList from './TodoList';
 import TodoInsert from './TodoInsert';
 import { SiAddthis } from 'react-icons/si';
 import styled from 'styled-components';
-const StyledTodoComp = styled.div`
-  margin: auto;
-  width: 800px;
-  height: 600px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  scrollbar-color: red;
-  scrollbar-width: thin;
-  border-radius: 20px;
-  position: relative;
-  ::-webkit-scrollbar
-  {border-radius: 10px;
-    width: 10px;
-  };
-  /* ::-webkit-scrollbar-track
-  {border-radius: 10px;
-    background-color: rgba(210, 214, 219,0.1)
-  }; */
-  ::-webkit-scrollbar-thumb
-  {border-radius: 10px;
-    background-color: rgba(210, 214, 219, 0.3);
-  };
-
-  .add-todo-button {
-    position: fixed;
-    right: 45%;
-    bottom: 5%;
-    z-index: 100;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    font-size: 4rem;
-    color: #F2CB05;
-    transition: 0.5s ease;
-    :hover {
-      color: #238C6E;
-    }
-}
-`
-
 
 const TodoComp = (todo) => {
   const [todos, setTodos] = useState([]);
@@ -78,7 +38,7 @@ const TodoComp = (todo) => {
       return alert('할 일을 입력해주세요.')
     } else {
       const todo = {
-        key: nextId,
+        id: nextId,
         text,
         checked: false,
       };
@@ -93,7 +53,6 @@ const TodoComp = (todo) => {
         body: JSON.stringify(todo)
       })
         .then(res => res.json())
-        .then(data => console.log(data))
         .catch(error => console.error(error));
 
     }
@@ -172,5 +131,47 @@ const TodoComp = (todo) => {
   );
 };
 
-
 export default TodoComp;
+
+
+
+const StyledTodoComp = styled.div`
+  margin: auto;
+  width: 800px;
+  height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-color: red;
+  scrollbar-width: thin;
+  border-radius: 20px;
+  position: relative;
+  ::-webkit-scrollbar
+  {border-radius: 10px;
+    width: 10px;
+  };
+  /* ::-webkit-scrollbar-track
+  {border-radius: 10px;
+    background-color: rgba(210, 214, 219,0.1)
+  }; */
+  ::-webkit-scrollbar-thumb
+  {border-radius: 10px;
+    background-color: rgba(210, 214, 219, 0.3);
+  };
+
+  .add-todo-button {
+    position: fixed;
+    right: 45%;
+    bottom: 5%;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    font-size: 4rem;
+    color: #F2CB05;
+    transition: 0.5s ease;
+    :hover {
+      color: #238C6E;
+    }
+}
+`
+

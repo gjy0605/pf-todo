@@ -1,8 +1,49 @@
 import React from "react";
+import TodoInsert from "./TodoInsert";
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from 'react-icons/ri'
 import { FaTrashAlt } from 'react-icons/fa'
-import styled from "styled-components"
 import { ImPencil2 } from "react-icons/im"
+import styled from "styled-components"
+
+
+
+const TodoItem = ({ todo, onCheckToggle, onInsertToggle, onChangeSelectedTodo, value, onUpdate, onRemove }) => {
+  const { id, text, checked, } = todo;
+
+  return (
+    <StyledTodoItem className="TodoItem">
+      <div className={`content ${checked ? 'checked' : ''}`}>
+        <span className="checkIcon">
+          {checked ? (
+            <RiCheckboxCircleFill
+              onClick={() => {
+                onCheckToggle(id)
+              }} />
+          ) : (
+            <RiCheckboxBlankCircleLine
+              onClick={() => {
+                onCheckToggle(id)
+              }}
+              className="RiCheckboxBlankCircleLine"
+            />
+          )}
+        </span>
+        <div className="text" onClick={() => {
+          onChangeSelectedTodo(todo)
+          onInsertToggle()
+        }}>
+          {text}
+        </div>
+        <div className="editIcon">
+          <span onClick={() => onUpdate(todo.id,)} ><ImPencil2 /></span>
+          <span onClick={() => onRemove(todo.id)} ><FaTrashAlt /></span>
+        </div>
+      </div>
+    </StyledTodoItem>
+  )
+}
+
+export default TodoItem;
 
 const StyledTodoItem = styled.div`
     margin-top: 20px;
@@ -57,41 +98,3 @@ const StyledTodoItem = styled.div`
 
   }
 `
-
-const TodoItem = ({ todo, onCheckToggle, onInsertToggle, onChangeSelectedTodo, value, onUpdate, onRemove }) => {
-  const { id, text, checked } = todo;
-
-  return (
-    <StyledTodoItem className="TodoItem">
-      <div className={`content ${checked ? 'checked' : ''}`}>
-        <span className="checkIcon">
-          {checked ? (
-            <RiCheckboxCircleFill
-              onClick={() => {
-                onCheckToggle(id)
-              }} />
-          ) : (
-            <RiCheckboxBlankCircleLine
-              onClick={() => {
-                onCheckToggle(id)
-              }}
-              className="RiCheckboxBlankCircleLine"
-            />
-          )}
-        </span>
-        <div className="text" onClick={() => {
-          onChangeSelectedTodo(todo)
-          onInsertToggle()
-        }}>
-          {text}
-        </div>
-        <div className="editIcon">
-          <span onClick={() => onUpdate(todo.id, value)} ><ImPencil2 /></span>
-          <span onClick={() => onRemove(todo.id)} ><FaTrashAlt /></span>
-        </div>
-      </div>
-    </StyledTodoItem>
-  )
-}
-
-export default TodoItem;  
