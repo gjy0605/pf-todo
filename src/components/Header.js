@@ -2,6 +2,42 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+const Header = () => {
+  const [activeTab, setActiveTab] = useState('todo');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const tabItems = [
+    { name: 'todo', label: '해야할 일' },
+    { name: 'todocalendar', label: '캘린더' },
+    { name: 'checklist', label: '체크리스트' },
+  ];
+
+  return (
+    <StyledHeader>
+      <header className="tabBg">
+        <nav className="tab-menu">
+          <ul>
+            {tabItems.map((tabItem) => (
+              <li
+                key={tabItem.name}
+                className={`tab ${activeTab === tabItem.name ? 'active' : ''}`}
+                onClick={() => handleTabClick(tabItem.name)}
+              >
+                <Link to={`/${tabItem.name}`}>{tabItem.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+    </StyledHeader>
+  );
+};
+
+export default Header;
+
 const StyledHeader = styled.div`
   width: 60px;
   a {
@@ -62,40 +98,3 @@ const StyledHeader = styled.div`
   }
   
 `;
-
-
-const Header = () => {
-  const [activeTab, setActiveTab] = useState('todo');
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
-  const tabItems = [
-    { name: 'todo', label: '해야할 일' },
-    { name: 'todocalendar', label: '캘린더' },
-    { name: 'checklist', label: '체크리스트' },
-  ];
-
-  return (
-    <StyledHeader>
-      <header className="tabBg">
-        <nav className="tab-menu">
-          <ul>
-            {tabItems.map((tabItem) => (
-              <li
-                key={tabItem.name}
-                className={`tab ${activeTab === tabItem.name ? 'active' : ''}`}
-                onClick={() => handleTabClick(tabItem.name)}
-              >
-                <Link to={`/${tabItem.name}`}>{tabItem.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
-    </StyledHeader>
-  );
-};
-
-export default Header;

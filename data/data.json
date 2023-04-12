@@ -1,10 +1,19 @@
 {
   "todos": [
     {
-      "key": 1,
-      "text": "232222",
-      "checked": false,
-      "id": 1
+      "id": 1,
+      "text": "시간제한 하는 기능 만들기",
+      "checked": false
+    },
+    {
+      "id": 3,
+      "text": "토글안되는거 고치기",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "text": "아이콘 클릭시 입력내용 작성하느곳 만들기",
+      "checked": false
     }
   ]
 }
